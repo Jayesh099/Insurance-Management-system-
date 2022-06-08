@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="agent">
+    <Key>
+      <PropertyRef Name="Agent_id" />
+    </Key>
+    <Property Name="Agent_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Fathername" Type="varchar" MaxLength="50" />
+    <Property Name="MotherName" Type="varchar" MaxLength="50" />
+    <Property Name="AdharNumber" Type="bigint" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="char" MaxLength="10" />
+    <Property Name="Dob" Type="date" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Contact" Type="bigint" />
+    <Property Name="Image" Type="text" />
+    <Property Name="AnnualIncome" Type="int" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Category_name" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="claim">
+    <Key>
+      <PropertyRef Name="claim_id" />
+    </Key>
+    <Property Name="claim_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="policy_id" Type="int" />
+    <Property Name="Intimation_Date" Type="date" />
+    <Property Name="description" Type="varchar" MaxLength="50" />
+    <Property Name="Document" Type="varchar" MaxLength="250" />
+    <Property Name="Total_amount" Type="bigint" />
+    <Property Name="Status" Type="int" />
+  </EntityType>
+  <EntityType Name="policy">
+    <Key>
+      <PropertyRef Name="Policy_id" />
+    </Key>
+    <Property Name="Policy_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="Policy_name" Type="varchar" MaxLength="50" />
+    <Property Name="Policy_description" Type="varchar" MaxLength="250" />
+    <Property Name="Policy_Image" Type="varchar" MaxLength="100" />
+    <Property Name="Policy_purchase_value" Type="bigint" />
+    <Property Name="policy_claim_value" Type="bigint" />
+  </EntityType>
+  <EntityType Name="registration_customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Contact" Type="bigint" />
+    <Property Name="Fathername" Type="varchar" MaxLength="50" />
+    <Property Name="Mothername" Type="varchar" MaxLength="50" />
+    <Property Name="AdharNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ExistingIllness" Type="varchar" MaxLength="50" />
+    <Property Name="Age" Type="int" />
+    <Property Name="Gender" Type="nchar" MaxLength="10" />
+    <Property Name="Dob" Type="date" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="occuption" Type="varchar" MaxLength="50" />
+    <Property Name="Qualification" Type="varchar" MaxLength="50" />
+    <Property Name="Annualincome" Type="bigint" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_policy_ToTable">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="policy" Type="Self.policy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="policy">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="agent" EntityType="Self.agent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="claim" EntityType="Self.claim" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="policy" EntityType="Self.policy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="registration_customer" EntityType="Self.registration_customer" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_policy_ToTable" Association="Self.FK_policy_ToTable">
+      <End Role="category" EntitySet="category" />
+      <End Role="policy" EntitySet="policy" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

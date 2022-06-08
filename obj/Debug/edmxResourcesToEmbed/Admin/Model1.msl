@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Insurance_Management__SystemEntities">
+    <EntitySetMapping Name="agents">
+      <EntityTypeMapping TypeName="Model.agent">
+        <MappingFragment StoreEntitySet="agent">
+          <ScalarProperty Name="Agent_id" ColumnName="Agent_id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fathername" ColumnName="Fathername" />
+          <ScalarProperty Name="MotherName" ColumnName="MotherName" />
+          <ScalarProperty Name="AdharNumber" ColumnName="AdharNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="AnnualIncome" ColumnName="AnnualIncome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="Model.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="Category_name" ColumnName="Category_name" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="claims">
+      <EntityTypeMapping TypeName="Model.claim">
+        <MappingFragment StoreEntitySet="claim">
+          <ScalarProperty Name="claim_id" ColumnName="claim_id" />
+          <ScalarProperty Name="policy_id" ColumnName="policy_id" />
+          <ScalarProperty Name="Intimation_Date" ColumnName="Intimation_Date" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="Document" ColumnName="Document" />
+          <ScalarProperty Name="Total_amount" ColumnName="Total_amount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="policies">
+      <EntityTypeMapping TypeName="Model.policy">
+        <MappingFragment StoreEntitySet="policy">
+          <ScalarProperty Name="Policy_id" ColumnName="Policy_id" />
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="Policy_name" ColumnName="Policy_name" />
+          <ScalarProperty Name="Policy_description" ColumnName="Policy_description" />
+          <ScalarProperty Name="Policy_Image" ColumnName="Policy_Image" />
+          <ScalarProperty Name="Policy_purchase_value" ColumnName="Policy_purchase_value" />
+          <ScalarProperty Name="policy_claim_value" ColumnName="policy_claim_value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="registration_customer">
+      <EntityTypeMapping TypeName="Model.registration_customer">
+        <MappingFragment StoreEntitySet="registration_customer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Fathername" ColumnName="Fathername" />
+          <ScalarProperty Name="Mothername" ColumnName="Mothername" />
+          <ScalarProperty Name="AdharNumber" ColumnName="AdharNumber" />
+          <ScalarProperty Name="ExistingIllness" ColumnName="ExistingIllness" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Dob" ColumnName="Dob" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="occuption" ColumnName="occuption" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Annualincome" ColumnName="Annualincome" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,1 @@
+﻿update registration_customer set Status='1' where otp='658704'

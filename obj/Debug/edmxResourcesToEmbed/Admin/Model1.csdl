@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="agent">
+    <Key>
+      <PropertyRef Name="Agent_id" />
+    </Key>
+    <Property Name="Agent_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Fathername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MotherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AdharNumber" Type="Int64" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Dob" Type="DateTime" Precision="0" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Contact" Type="Int64" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AnnualIncome" Type="Int32" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="Byte" />
+    <NavigationProperty Name="policies" Relationship="Self.FK_policy_ToTable" FromRole="category" ToRole="policy" />
+  </EntityType>
+  <EntityType Name="claim">
+    <Key>
+      <PropertyRef Name="claim_id" />
+    </Key>
+    <Property Name="claim_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="policy_id" Type="Int32" />
+    <Property Name="Intimation_Date" Type="DateTime" Precision="0" />
+    <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Document" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Total_amount" Type="Int64" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="policy">
+    <Key>
+      <PropertyRef Name="Policy_id" />
+    </Key>
+    <Property Name="Policy_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="Policy_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Policy_description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Policy_Image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Policy_purchase_value" Type="Int64" />
+    <Property Name="policy_claim_value" Type="Int64" />
+    <NavigationProperty Name="category" Relationship="Self.FK_policy_ToTable" FromRole="policy" ToRole="category" />
+  </EntityType>
+  <EntityType Name="registration_customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="Int64" />
+    <Property Name="Fathername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mothername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AdharNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ExistingIllness" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Dob" Type="DateTime" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="occuption" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Annualincome" Type="Int64" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_policy_ToTable">
+    <End Role="category" Type="Self.category" Multiplicity="0..1" />
+    <End Role="policy" Type="Self.policy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="policy">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Insurance_Management__SystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="agents" EntityType="Self.agent" />
+    <EntitySet Name="categories" EntityType="Self.category" />
+    <EntitySet Name="claims" EntityType="Self.claim" />
+    <EntitySet Name="policies" EntityType="Self.policy" />
+    <EntitySet Name="registration_customer" EntityType="Self.registration_customer" />
+    <AssociationSet Name="FK_policy_ToTable" Association="Self.FK_policy_ToTable">
+      <End Role="category" EntitySet="categories" />
+      <End Role="policy" EntitySet="policies" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

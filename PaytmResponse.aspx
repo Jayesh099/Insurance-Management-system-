@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PaytmResponse.aspx.cs" Inherits="Insurance_management_System.PaytmResponse" %>
